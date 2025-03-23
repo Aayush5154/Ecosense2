@@ -91,200 +91,169 @@ st.markdown(
         --success-bg: #C8E6C9;
         --error-bg: #FFCDD2;
         --error-color: #B71C1C;
+        --input-bg: #FFFFFF;
     }
 
     /* Dark mode overrides */
-    [data-theme="dark"] {
-        --bg-primary: #0A1929;
-        --text-primary: #E8F5E9;
-        --text-secondary: #81C784;
-        --accent-color: #4CAF50;
-        --accent-hover: #66BB6A;
-        --card-bg: #132F4C;
-        --success-bg: rgba(76, 175, 80, 0.2);
-        --error-bg: rgba(183, 28, 28, 0.2);
-        --error-color: #EF5350;
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-primary: #121212;
+            --text-primary: #FFFFFF;
+            --text-secondary: #81C784;
+            --accent-color: #4CAF50;
+            --accent-hover: #66BB6A;
+            --card-bg: #1E1E1E;
+            --success-bg: rgba(76, 175, 80, 0.2);
+            --error-bg: rgba(183, 28, 28, 0.2);
+            --error-color: #EF5350;
+            --input-bg: #2D2D2D;
+        }
     }
 
-    /* App Container */
+    /* Force dark mode */
     [data-testid="stAppViewContainer"] {
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
+        background-color: #121212 !important;
+        color: #FFFFFF;
     }
 
-    /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: var(--accent-color) !important;
+        background-color: #1E1E1E !important;
+        border-right: 1px solid #333333;
     }
 
     [data-testid="stSidebar"] * {
-        color: white !important;
-    }
-
-    /* Buttons */
-    div.stButton > button {
-        border-radius: 10px;
-        background-color: var(--accent-color);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        transition: 0.3s;
-    }
-    
-    div.stButton > button:hover {
-        background-color: var(--accent-hover);
-        transform: translateY(-2px);
+        color: #FFFFFF !important;
     }
 
     /* Headers */
     h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
-        color: var(--text-primary) !important;
+        color: #FFFFFF !important;
     }
 
     /* Text elements */
-    p, span, div {
-        color: var(--text-primary);
-    }
-
-    /* Card styling */
-    .stCard {
-        background-color: var(--card-bg);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    p, span, div, label {
+        color: #FFFFFF !important;
     }
 
     /* Input fields */
     .stTextInput > div > div > input,
     .stNumberInput > div > div > input,
-    .stDateInput > div > div > input {
-        border-radius: 8px;
-        border: 1px solid var(--accent-color);
-        background-color: var(--card-bg);
-        color: var(--text-primary);
+    .stDateInput > div > div > input,
+    .stTextArea > div > div > textarea {
+        background-color: #2D2D2D !important;
+        color: #FFFFFF !important;
+        border: 1px solid #404040 !important;
     }
 
     /* Select boxes */
     .stSelectbox > div > div > div {
-        border-radius: 8px;
-        border: 1px solid var(--accent-color);
-        background-color: var(--card-bg);
-        color: var(--text-primary);
+        background-color: #2D2D2D !important;
+        color: #FFFFFF !important;
+        border: 1px solid #404040 !important;
     }
 
-    /* Metrics styling */
+    /* Buttons */
+    div.stButton > button {
+        background-color: #4CAF50 !important;
+        color: white !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        border-radius: 5px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    div.stButton > button:hover {
+        background-color: #45a049 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Metrics */
     [data-testid="stMetricValue"] {
-        color: var(--text-primary);
-        font-weight: bold;
+        color: #FFFFFF !important;
     }
 
     [data-testid="stMetricDelta"] {
-        color: var(--accent-color);
-    }
-
-    /* Progress bar */
-    .stProgress > div > div > div {
-        background-color: var(--accent-color);
-    }
-
-    /* Success messages */
-    .stSuccess {
-        background-color: var(--success-bg);
-        color: var(--text-primary);
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid var(--accent-color);
-    }
-
-    /* Error messages */
-    .stError {
-        background-color: var(--error-bg);
-        color: var(--error-color);
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid var(--error-color);
+        color: #4CAF50 !important;
     }
 
     /* Tables */
-    .stTable {
-        background-color: var(--card-bg);
+    .stTable, .dataframe {
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
     }
 
-    .stTable th {
-        background-color: var(--accent-color);
-        color: white;
+    .stTable th, .dataframe th {
+        background-color: #2D2D2D !important;
+        color: #FFFFFF !important;
+        border-bottom: 1px solid #404040 !important;
     }
 
-    .stTable td {
-        color: var(--text-primary);
+    .stTable td, .dataframe td {
+        color: #FFFFFF !important;
+        border-bottom: 1px solid #333333 !important;
     }
 
     /* Charts */
     [data-testid="stChart"] {
-        background-color: var(--card-bg);
-        border-radius: 10px;
-        padding: 10px;
+        background-color: #1E1E1E !important;
+        border: 1px solid #333333 !important;
     }
 
-    /* Radio buttons */
-    .stRadio > div {
-        color: var(--text-primary);
-    }
-
-    /* Checkboxes */
-    .stCheckbox > div {
-        color: var(--text-primary);
-    }
-
-    /* Text areas */
-    .stTextArea textarea {
-        background-color: var(--card-bg);
-        color: var(--text-primary);
-        border: 1px solid var(--accent-color);
-        border-radius: 8px;
+    /* Radio buttons and checkboxes */
+    .stRadio > div, .stCheckbox > div {
+        color: #FFFFFF !important;
     }
 
     /* Links */
     a {
-        color: var(--accent-color);
-        text-decoration: none;
+        color: #4CAF50 !important;
     }
 
     a:hover {
-        color: var(--accent-hover);
-        text-decoration: underline;
+        color: #66BB6A !important;
     }
 
-    /* Tooltips */
-    .stTooltip {
-        color: var(--text-primary);
+    /* Success and error messages */
+    .stSuccess {
+        background-color: rgba(76, 175, 80, 0.2) !important;
+        color: #FFFFFF !important;
+        border: 1px solid #4CAF50 !important;
     }
 
-    /* Dataframe */
-    .dataframe {
-        background-color: var(--card-bg);
-        color: var(--text-primary);
-    }
-
-    .dataframe th {
-        background-color: var(--accent-color);
-        color: white;
-    }
-
-    /* Tabs */
-    .stTabs [data-baseweb="tab-list"] {
-        background-color: var(--card-bg);
-    }
-
-    .stTabs [data-baseweb="tab"] {
-        color: var(--text-primary);
+    .stError {
+        background-color: rgba(183, 28, 28, 0.2) !important;
+        color: #EF5350 !important;
+        border: 1px solid #EF5350 !important;
     }
 
     /* Expander */
     .streamlit-expanderHeader {
-        background-color: var(--card-bg);
-        color: var(--text-primary);
+        background-color: #1E1E1E !important;
+        color: #FFFFFF !important;
+        border: 1px solid #333333 !important;
+    }
+
+    /* Tooltips */
+    .stTooltip {
+        color: #FFFFFF !important;
+    }
+
+    /* Progress bar */
+    .stProgress > div > div > div {
+        background-color: #4CAF50 !important;
+    }
+
+    /* Markdown text */
+    .stMarkdown {
+        color: #FFFFFF !important;
+    }
+
+    /* Code blocks */
+    code {
+        background-color: #2D2D2D !important;
+        color: #FFFFFF !important;
+        border: 1px solid #404040 !important;
     }
     </style>
     """,
@@ -538,10 +507,10 @@ def waste_insights():
         sample_dates = pd.date_range(end=datetime.now(), periods=days)
         sample_data = pd.DataFrame({
             "Date": sample_dates,
-            "Organic": np.random.normal(1.8, 0.6, days),
-            "Plastic": np.random.normal(0.9, 0.4, days),
-            "Paper": np.random.normal(0.7, 0.3, days)
-        })
+        "Organic": np.random.normal(1.8, 0.6, days),
+        "Plastic": np.random.normal(0.9, 0.4, days),
+        "Paper": np.random.normal(0.7, 0.3, days)
+    })
         sample_data.set_index("Date", inplace=True)
         st.line_chart(sample_data)
         st.caption("This is a sample visualization. Your actual data will appear here once you start logging waste.")
