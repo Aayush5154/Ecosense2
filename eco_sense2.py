@@ -80,26 +80,51 @@ def initialize_ml_model():
 st.markdown(
     """
     <style>
-    /* Set Background Color */
+    /* Base styles and light mode */
+    :root {
+        --bg-primary: #E8F5E9;
+        --text-primary: #1B5E20;
+        --text-secondary: #2E7D32;
+        --accent-color: #4CAF50;
+        --accent-hover: #388E3C;
+        --card-bg: #FFFFFF;
+        --success-bg: #C8E6C9;
+        --error-bg: #FFCDD2;
+        --error-color: #B71C1C;
+    }
+
+    /* Dark mode overrides */
+    [data-theme="dark"] {
+        --bg-primary: #0A1929;
+        --text-primary: #E8F5E9;
+        --text-secondary: #81C784;
+        --accent-color: #4CAF50;
+        --accent-hover: #66BB6A;
+        --card-bg: #132F4C;
+        --success-bg: rgba(76, 175, 80, 0.2);
+        --error-bg: rgba(183, 28, 28, 0.2);
+        --error-color: #EF5350;
+    }
+
+    /* App Container */
     [data-testid="stAppViewContainer"] {
-        background-color: #E8F5E9;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
     }
 
-    /* Sidebar Styling */
+    /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #2E7D32 !important;
-        color: white !important;
+        background-color: var(--accent-color) !important;
     }
 
-    /* Sidebar Text Styling */
     [data-testid="stSidebar"] * {
         color: white !important;
     }
 
-    /* Buttons Styling */
+    /* Buttons */
     div.stButton > button {
         border-radius: 10px;
-        background-color: #4CAF50;
+        background-color: var(--accent-color);
         color: white;
         border: none;
         padding: 10px 20px;
@@ -108,17 +133,23 @@ st.markdown(
     }
     
     div.stButton > button:hover {
-        background-color: #388E3C;
+        background-color: var(--accent-hover);
+        transform: translateY(-2px);
     }
 
     /* Headers */
-    .st-emotion-cache-10trblm {
-        color: #1B5E20;
+    h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
+        color: var(--text-primary) !important;
+    }
+
+    /* Text elements */
+    p, span, div {
+        color: var(--text-primary);
     }
 
     /* Card styling */
     .stCard {
-        background-color: white;
+        background-color: var(--card-bg);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -129,40 +160,131 @@ st.markdown(
     .stNumberInput > div > div > input,
     .stDateInput > div > div > input {
         border-radius: 8px;
-        border: 1px solid #4CAF50;
+        border: 1px solid var(--accent-color);
+        background-color: var(--card-bg);
+        color: var(--text-primary);
     }
 
     /* Select boxes */
     .stSelectbox > div > div > div {
         border-radius: 8px;
-        border: 1px solid #4CAF50;
+        border: 1px solid var(--accent-color);
+        background-color: var(--card-bg);
+        color: var(--text-primary);
     }
 
     /* Metrics styling */
     [data-testid="stMetricValue"] {
-        color: #1B5E20;
+        color: var(--text-primary);
         font-weight: bold;
+    }
+
+    [data-testid="stMetricDelta"] {
+        color: var(--accent-color);
     }
 
     /* Progress bar */
     .stProgress > div > div > div {
-        background-color: #4CAF50;
+        background-color: var(--accent-color);
     }
 
     /* Success messages */
     .stSuccess {
-        background-color: #C8E6C9;
-        color: #1B5E20;
+        background-color: var(--success-bg);
+        color: var(--text-primary);
         padding: 10px;
         border-radius: 8px;
+        border: 1px solid var(--accent-color);
     }
 
     /* Error messages */
     .stError {
-        background-color: #FFCDD2;
-        color: #B71C1C;
+        background-color: var(--error-bg);
+        color: var(--error-color);
         padding: 10px;
         border-radius: 8px;
+        border: 1px solid var(--error-color);
+    }
+
+    /* Tables */
+    .stTable {
+        background-color: var(--card-bg);
+    }
+
+    .stTable th {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .stTable td {
+        color: var(--text-primary);
+    }
+
+    /* Charts */
+    [data-testid="stChart"] {
+        background-color: var(--card-bg);
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /* Radio buttons */
+    .stRadio > div {
+        color: var(--text-primary);
+    }
+
+    /* Checkboxes */
+    .stCheckbox > div {
+        color: var(--text-primary);
+    }
+
+    /* Text areas */
+    .stTextArea textarea {
+        background-color: var(--card-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+    }
+
+    /* Links */
+    a {
+        color: var(--accent-color);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+    }
+
+    /* Tooltips */
+    .stTooltip {
+        color: var(--text-primary);
+    }
+
+    /* Dataframe */
+    .dataframe {
+        background-color: var(--card-bg);
+        color: var(--text-primary);
+    }
+
+    .dataframe th {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: var(--card-bg);
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        color: var(--text-primary);
+    }
+
+    /* Expander */
+    .streamlit-expanderHeader {
+        background-color: var(--card-bg);
+        color: var(--text-primary);
     }
     </style>
     """,
