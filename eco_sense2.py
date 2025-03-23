@@ -212,38 +212,41 @@ def main():
         project_info()
 
 def login():
-    st.title("🔐 Login to EcoSense")
-    username = st.text_input("👤 Username")
-    password = st.text_input("🔑 Password", type="password")
+    st.title("👋 Welcome to Your Eco Journey!")
+    st.write("Join our community of eco-warriors making a difference, one step at a time.")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
     
-    if st.button("Login"):
+    if st.button("Start My Journey"):
         if authenticate(username, password):
             st.session_state["authenticated"] = True
             st.session_state["username"] = username
             st.rerun()
         else:
-            st.error("❌ Invalid credentials. Please try again.")
+            st.error("Oops! Those credentials don't match our records. Want to try again?")
     
-    st.subheader("New User? Register Below")
-    new_user = st.text_input("Choose Username")
-    new_pass = st.text_input("Choose Password", type="password")
-    if st.button("Register"):
+    st.markdown("---")
+    st.subheader("🌱 First Time Here?")
+    st.write("Create your account and join our mission for a cleaner planet!")
+    new_user = st.text_input("Pick a Username")
+    new_pass = st.text_input("Create a Password", type="password")
+    if st.button("Join the Movement"):
         if register(new_user, new_pass):
-            st.success("✅ Registration Successful! You can now log in.")
+            st.success("Welcome to the EcoSense family! You're all set to make a difference.")
         else:
-            st.error("⚠ Username already exists!")
+            st.error("This username is already making a difference! Try another one.")
 
 def home_screen():
-    st.header("🌍 Welcome to EcoSense!")
-    st.subheader("Your personalized waste tracking dashboard")
+    st.header("🌍 Your Environmental Impact Dashboard")
+    st.write(f"Welcome back, {st.session_state['username']}! Let's see the difference you're making.")
     
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric(label="♻ Waste Reduction", value="28%", delta="5%")
+        st.metric(label="Your Impact Score", value="28%", delta="5%")
     with col2:
-        st.metric(label="🔄 Recovered Materials", value="167 kg", delta="23 kg")
+        st.metric(label="Materials Saved", value="167 kg", delta="23 kg")
     with col3:
-        st.metric(label="🌱 CO₂ Equivalent Saved", value="103 kg", delta="-12 kg")
+        st.metric(label="Carbon Footprint Reduced", value="103 kg", delta="-12 kg")
 
 def log_waste():
     st.header("📝 Log Your Waste")
@@ -260,7 +263,7 @@ def log_waste():
         st.success(f"✅ Logged {quantity} kg of {material}")
 
 def waste_insights():
-    st.header("📊 Waste Insights")
+    st.header("📊 Your Sustainability Journey")
     
     # Add time period selector
     span = st.selectbox("Select Time Period", ["7 Days", "30 Days", "90 Days", "1 Year"])
@@ -422,13 +425,18 @@ def waste_insights():
         st.caption("This is a sample visualization. Your actual data will appear here once you start logging waste.")
 
 def action_plan():
-    st.header("🚀 Personalized Action Plan")
-    st.write("🌿 Reduce plastic waste by 35% in 90 days!")
+    st.header("🎯 Your Green Goals")
+    st.write("Let's make sustainability a daily habit!")
     st.progress(0.58)
-    st.write("💡 Try using reusable alternatives like cloth bags and metal straws.")
+    st.write("""
+    Your next eco-challenges:
+    1. Switch to reusable shopping bags
+    2. Start a mini herb garden
+    3. Try plastic-free shopping week
+    """)
 
 def leaderboard():
-    st.header("🏆 Leaderboard - Top Waste Reducers")
+    st.header("🏆 Environmental Champions")
     df = pd.read_sql_query("""
         SELECT username, 
                SUM(quantity) as total_waste,
@@ -444,20 +452,44 @@ def leaderboard():
         st.info("No entries yet. Start logging waste to appear on the leaderboard!")
 
 def community_forum():
-    st.header("💬 Community Forum - Share Your Tips")
-    comment = st.text_area("📝 Share a sustainability tip:")
-    if st.button("📢 Post"):
-        st.success("✅ Your tip has been posted!")
+    st.header("💚 Community Hub")
+    st.write("Share your eco-friendly tips and inspire others!")
     
-    st.subheader("📌 Recent Tips")
-    st.write("- Use reusable bags for shopping")
-    st.write("- Start composting kitchen waste")
-    st.write("- Switch to eco-friendly products")
+    comment = st.text_area("Got a sustainable life hack to share?")
+    if st.button("Share with Community"):
+        st.success("Thanks for spreading the green wisdom! Your tip will inspire others.")
+    
+    st.subheader("🌟 Community Highlights")
+    st.write("- 'I started using beeswax wraps instead of plastic wrap - game changer!' - Recent Community Tip")
+    st.write("- 'My composting journey reduced my waste by 40%!' - Success Story")
+    st.write("- 'Local farmers market shopping eliminated my plastic packaging' - Weekly Inspiration")
 
 def project_info():
-    st.header("ℹ️ About EcoSense")
-    st.write("EcoSense is a waste reduction platform for a greener planet.")
-    st.markdown("**GitHub Repository:** [github.com/Aayush5154/EcoSense](https://github.com/Aayush5154/EcoSense)")
+    st.header("🌱 About Our Mission")
+    st.write("""
+    Welcome to EcoSense - where every small action counts towards a bigger change. 
+    We're not just another waste tracking platform; we're a community of change-makers 
+    committed to creating a more sustainable future.
+    """)
+    
+    st.markdown("""
+    ### 🚀 What Makes Us Different
+    
+    We believe in making sustainability accessible and engaging. Our platform combines:
+    - **Smart Tracking**: Understand your environmental impact in real-time
+    - **Community Power**: Learn and share with fellow eco-warriors
+    - **Personalized Journey**: Get tips and insights tailored to your habits
+    - **Visual Progress**: Watch your positive impact grow over time
+    - **Real Results**: Turn your daily actions into measurable change
+    
+    ### 🤝 Join Our Community
+    - **GitHub:** [Check out our open-source project](https://github.com/Aayush5154/Ecosense2)
+    - **Share Ideas:** [Contribute to development](https://github.com/Aayush5154/Ecosense2/issues)
+    - **Learn More:** [Read our story](https://github.com/Aayush5154/Ecosense2#readme)
+    
+    ### 📈 Platform Status
+    Current Version: 1.0.0 - Building a greener future together
+    """)
 
 def waste_to_energy_calculator():
     st.header("⚡ Waste-to-Energy Calculator")
