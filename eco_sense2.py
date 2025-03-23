@@ -80,180 +80,159 @@ def initialize_ml_model():
 st.markdown(
     """
     <style>
-    /* Base styles and light mode */
-    :root {
-        --bg-primary: #E8F5E9;
-        --text-primary: #1B5E20;
-        --text-secondary: #2E7D32;
-        --accent-color: #4CAF50;
-        --accent-hover: #388E3C;
-        --card-bg: #FFFFFF;
-        --success-bg: #C8E6C9;
-        --error-bg: #FFCDD2;
-        --error-color: #B71C1C;
-        --input-bg: #FFFFFF;
-    }
-
-    /* Dark mode overrides */
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --bg-primary: #121212;
-            --text-primary: #FFFFFF;
-            --text-secondary: #81C784;
-            --accent-color: #4CAF50;
-            --accent-hover: #66BB6A;
-            --card-bg: #1E1E1E;
-            --success-bg: rgba(76, 175, 80, 0.2);
-            --error-bg: rgba(183, 28, 28, 0.2);
-            --error-color: #EF5350;
-            --input-bg: #2D2D2D;
-        }
-    }
-
-    /* Force dark mode */
+    /* Light theme (default) */
     [data-testid="stAppViewContainer"] {
-        background-color: #121212 !important;
-        color: #FFFFFF;
+        background-color: #E8F5E9;
     }
 
     [data-testid="stSidebar"] {
-        background-color: #1E1E1E !important;
-        border-right: 1px solid #333333;
+        background-color: #2E7D32 !important;
     }
 
     [data-testid="stSidebar"] * {
-        color: #FFFFFF !important;
+        color: white !important;
     }
 
-    /* Headers */
     h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
-        color: #FFFFFF !important;
+        color: #1B5E20;
     }
 
-    /* Text elements */
     p, span, div, label {
-        color: #FFFFFF !important;
+        color: #1B5E20;
     }
 
-    /* Input fields */
+    /* Input fields - Light theme */
     .stTextInput > div > div > input,
     .stNumberInput > div > div > input,
     .stDateInput > div > div > input,
     .stTextArea > div > div > textarea {
-        background-color: #2D2D2D !important;
-        color: #FFFFFF !important;
-        border: 1px solid #404040 !important;
+        background-color: white;
+        color: #1B5E20;
+        border: 1px solid #4CAF50;
+        border-radius: 8px;
     }
 
-    /* Select boxes */
+    /* Select boxes - Light theme */
     .stSelectbox > div > div > div {
-        background-color: #2D2D2D !important;
-        color: #FFFFFF !important;
-        border: 1px solid #404040 !important;
+        background-color: white;
+        color: #1B5E20;
+        border: 1px solid #4CAF50;
+        border-radius: 8px;
     }
 
-    /* Buttons */
+    /* Buttons - Light theme */
     div.stButton > button {
-        background-color: #4CAF50 !important;
-        color: white !important;
-        border: none !important;
-        padding: 10px 20px !important;
-        border-radius: 5px !important;
-        transition: all 0.3s ease !important;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
     }
 
     div.stButton > button:hover {
-        background-color: #45a049 !important;
+        background-color: #45a049;
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* Metrics */
-    [data-testid="stMetricValue"] {
-        color: #FFFFFF !important;
-    }
+    /* Dark theme overrides */
+    @media (prefers-color-scheme: dark) {
+        [data-testid="stAppViewContainer"] {
+            background-color: #121212 !important;
+        }
 
-    [data-testid="stMetricDelta"] {
-        color: #4CAF50 !important;
-    }
+        [data-testid="stSidebar"] {
+            background-color: #1E1E1E !important;
+            border-right: 1px solid #333333;
+        }
 
-    /* Tables */
-    .stTable, .dataframe {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
-    }
+        h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
+            color: #FFFFFF !important;
+        }
 
-    .stTable th, .dataframe th {
-        background-color: #2D2D2D !important;
-        color: #FFFFFF !important;
-        border-bottom: 1px solid #404040 !important;
-    }
+        p, span, div, label {
+            color: #FFFFFF !important;
+        }
 
-    .stTable td, .dataframe td {
-        color: #FFFFFF !important;
-        border-bottom: 1px solid #333333 !important;
-    }
+        /* Input fields - Dark theme */
+        .stTextInput > div > div > input,
+        .stNumberInput > div > div > input,
+        .stDateInput > div > div > input,
+        .stTextArea > div > div > textarea {
+            background-color: #2D2D2D !important;
+            color: #FFFFFF !important;
+            border: 1px solid #404040 !important;
+        }
 
-    /* Charts */
-    [data-testid="stChart"] {
-        background-color: #1E1E1E !important;
-        border: 1px solid #333333 !important;
-    }
+        /* Select boxes - Dark theme */
+        .stSelectbox > div > div > div {
+            background-color: #2D2D2D !important;
+            color: #FFFFFF !important;
+            border: 1px solid #404040 !important;
+        }
 
-    /* Radio buttons and checkboxes */
-    .stRadio > div, .stCheckbox > div {
-        color: #FFFFFF !important;
-    }
+        /* Tables - Dark theme */
+        .stTable, .dataframe {
+            background-color: #1E1E1E !important;
+            color: #FFFFFF !important;
+        }
 
-    /* Links */
-    a {
-        color: #4CAF50 !important;
-    }
+        .stTable th, .dataframe th {
+            background-color: #2D2D2D !important;
+            color: #FFFFFF !important;
+            border-bottom: 1px solid #404040 !important;
+        }
 
-    a:hover {
-        color: #66BB6A !important;
-    }
+        .stTable td, .dataframe td {
+            color: #FFFFFF !important;
+            border-bottom: 1px solid #333333 !important;
+        }
 
-    /* Success and error messages */
-    .stSuccess {
-        background-color: rgba(76, 175, 80, 0.2) !important;
-        color: #FFFFFF !important;
-        border: 1px solid #4CAF50 !important;
-    }
+        /* Charts - Dark theme */
+        [data-testid="stChart"] {
+            background-color: #1E1E1E !important;
+            border: 1px solid #333333 !important;
+        }
 
-    .stError {
-        background-color: rgba(183, 28, 28, 0.2) !important;
-        color: #EF5350 !important;
-        border: 1px solid #EF5350 !important;
-    }
+        /* Success messages - Dark theme */
+        .stSuccess {
+            background-color: rgba(76, 175, 80, 0.2) !important;
+            color: #FFFFFF !important;
+            border: 1px solid #4CAF50 !important;
+        }
 
-    /* Expander */
-    .streamlit-expanderHeader {
-        background-color: #1E1E1E !important;
-        color: #FFFFFF !important;
-        border: 1px solid #333333 !important;
-    }
+        /* Error messages - Dark theme */
+        .stError {
+            background-color: rgba(183, 28, 28, 0.2) !important;
+            color: #EF5350 !important;
+            border: 1px solid #EF5350 !important;
+        }
 
-    /* Tooltips */
-    .stTooltip {
-        color: #FFFFFF !important;
-    }
+        /* Metrics - Dark theme */
+        [data-testid="stMetricValue"] {
+            color: #FFFFFF !important;
+        }
 
-    /* Progress bar */
-    .stProgress > div > div > div {
-        background-color: #4CAF50 !important;
-    }
+        [data-testid="stMetricDelta"] {
+            color: #4CAF50 !important;
+        }
 
-    /* Markdown text */
-    .stMarkdown {
-        color: #FFFFFF !important;
-    }
+        /* Code blocks - Dark theme */
+        code {
+            background-color: #2D2D2D !important;
+            color: #FFFFFF !important;
+            border: 1px solid #404040 !important;
+        }
 
-    /* Code blocks */
-    code {
-        background-color: #2D2D2D !important;
-        color: #FFFFFF !important;
-        border: 1px solid #404040 !important;
+        /* Links - Dark theme */
+        a {
+            color: #4CAF50 !important;
+        }
+
+        a:hover {
+            color: #66BB6A !important;
+        }
     }
     </style>
     """,
