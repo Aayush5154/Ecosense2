@@ -12,7 +12,19 @@ import os
 import sqlite3
 
 # Set page config at the very beginning
-st.set_page_config(page_title="EcoSense - Waste Reduction Platform", page_icon="🌱", layout="wide")
+st.set_page_config(
+    page_title="EcoSense - Waste Reduction Platform",
+    page_icon="🌱",
+    layout="wide",
+    menu_items={
+        'Get Help': 'https://github.com/Aayush5154/Ecosense2/issues',
+        'Report a bug': 'https://github.com/Aayush5154/Ecosense2/issues',
+        'About': '''
+        # EcoSense Platform
+        Version 1.0.0 - Making sustainability accessible to everyone.
+        '''
+    }
+)
 
 # Database Setup
 conn = sqlite3.connect("ecosense.db", check_same_thread=False)
@@ -83,22 +95,83 @@ st.markdown(
     /* Light theme (default) */
     [data-testid="stAppViewContainer"] {
         background-color: #E8F5E9;
+        background-image: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 25%, transparent 25%),
+                         linear-gradient(225deg, rgba(46, 125, 50, 0.1) 25%, transparent 25%),
+                         linear-gradient(45deg, rgba(46, 125, 50, 0.1) 25%, transparent 25%),
+                         linear-gradient(315deg, rgba(46, 125, 50, 0.1) 25%, #E8F5E9 25%);
+        background-position: 10px 0, 10px 0, 0 0, 0 0;
+        background-size: 20px 20px;
+        background-repeat: repeat;
+    }
+
+    /* Hamburger menu button */
+    button[data-testid="baseButton-header"] {
+        background: none !important;
+        color: #1B5E20 !important;
+        border: none !important;
+        padding: 0 !important;
+        font-size: 24px !important;
+        cursor: pointer !important;
+        margin-right: 10px !important;
+    }
+
+    button[data-testid="baseButton-header"]::before {
+        content: "☰" !important;
+        font-size: 24px !important;
+    }
+
+    /* Hide default arrow */
+    button[data-testid="baseButton-header"] svg {
+        display: none !important;
     }
 
     [data-testid="stSidebar"] {
         background-color: #2E7D32 !important;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+                         linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+                         linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
+                         linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%);
+        background-size: 20px 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     [data-testid="stSidebar"] * {
         color: white !important;
     }
 
+    /* Main content styling */
+    .main > div {
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        margin: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
         color: #1B5E20;
+        font-weight: 600;
+        margin-bottom: 1rem;
     }
 
     p, span, div, label {
         color: #1B5E20;
+    }
+
+    /* Cards styling */
+    div[data-testid="stVerticalBlock"] > div {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        margin: 0.5rem 0;
+        transition: transform 0.2s ease;
+    }
+
+    div[data-testid="stVerticalBlock"] > div:hover {
+        transform: translateY(-2px);
     }
 
     /* Input fields - Light theme */
@@ -110,6 +183,16 @@ st.markdown(
         color: #1B5E20;
         border: 1px solid #4CAF50;
         border-radius: 8px;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .stTextInput > div > div > input:focus,
+    .stNumberInput > div > div > input:focus,
+    .stDateInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        border-color: #2E7D32;
+        box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
     }
 
     /* Select boxes - Light theme */
@@ -118,6 +201,7 @@ st.markdown(
         color: #1B5E20;
         border: 1px solid #4CAF50;
         border-radius: 8px;
+        padding: 0.5rem;
     }
 
     /* Buttons - Light theme */
@@ -125,9 +209,12 @@ st.markdown(
         background-color: #4CAF50;
         color: white;
         border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
         transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     div.stButton > button:hover {
@@ -140,11 +227,28 @@ st.markdown(
     @media (prefers-color-scheme: dark) {
         [data-testid="stAppViewContainer"] {
             background-color: #121212 !important;
+            background-image: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
+                             linear-gradient(225deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
+                             linear-gradient(45deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
+                             linear-gradient(315deg, rgba(76, 175, 80, 0.05) 25%, #121212 25%) !important;
+        }
+
+        button[data-testid="baseButton-header"] {
+            color: #FFFFFF !important;
         }
 
         [data-testid="stSidebar"] {
             background-color: #1E1E1E !important;
-            border-right: 1px solid #333333;
+            background-image: linear-gradient(45deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
+                             linear-gradient(-45deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
+                             linear-gradient(45deg, transparent 75%, rgba(76, 175, 80, 0.05) 75%),
+                             linear-gradient(-45deg, transparent 75%, rgba(76, 175, 80, 0.05) 75%) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .main > div {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
         }
 
         h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
@@ -153,6 +257,11 @@ st.markdown(
 
         p, span, div, label {
             color: #FFFFFF !important;
+        }
+
+        div[data-testid="stVerticalBlock"] > div {
+            background: #1E1E1E;
+            border: 1px solid #333333;
         }
 
         /* Input fields - Dark theme */
