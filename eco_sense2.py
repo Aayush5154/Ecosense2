@@ -14,16 +14,8 @@ import sqlite3
 # Set page config at the very beginning
 st.set_page_config(
     page_title="EcoSense - Waste Reduction Platform",
-    page_icon="🌱",
-    layout="wide",
-    menu_items={
-        'Get Help': 'https://github.com/Aayush5154/Ecosense2/issues',
-        'Report a bug': 'https://github.com/Aayush5154/Ecosense2/issues',
-        'About': '''
-        # EcoSense Platform
-        Version 1.0.0 - Making sustainability accessible to everyone.
-        '''
-    }
+    page_icon="��",
+    layout="wide"
 )
 
 # Database Setup
@@ -95,59 +87,15 @@ st.markdown(
     /* Light theme (default) */
     [data-testid="stAppViewContainer"] {
         background-color: #E8F5E9;
-        background-image: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 25%, transparent 25%),
-                         linear-gradient(225deg, rgba(46, 125, 50, 0.1) 25%, transparent 25%),
-                         linear-gradient(45deg, rgba(46, 125, 50, 0.1) 25%, transparent 25%),
-                         linear-gradient(315deg, rgba(46, 125, 50, 0.1) 25%, #E8F5E9 25%);
-        background-position: 10px 0, 10px 0, 0 0, 0 0;
-        background-size: 20px 20px;
-        background-repeat: repeat;
-    }
-
-    /* Hamburger menu button */
-    button[data-testid="baseButton-header"] {
-        background: none !important;
-        color: #1B5E20 !important;
-        border: none !important;
-        padding: 0 !important;
-        font-size: 24px !important;
-        cursor: pointer !important;
-        margin-right: 10px !important;
-    }
-
-    button[data-testid="baseButton-header"]::before {
-        content: "☰" !important;
-        font-size: 24px !important;
-    }
-
-    /* Hide default arrow */
-    button[data-testid="baseButton-header"] svg {
-        display: none !important;
     }
 
     [data-testid="stSidebar"] {
-        background-color: #2E7D32 !important;
-        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
-                         linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
-                         linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
-                         linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%);
-        background-size: 20px 20px;
+        background-color: #2E7D32;
         border-right: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     [data-testid="stSidebar"] * {
         color: white !important;
-    }
-
-    /* Main content styling */
-    .main > div {
-        padding: 1rem 2rem;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        margin: 1rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
@@ -160,20 +108,6 @@ st.markdown(
         color: #1B5E20;
     }
 
-    /* Cards styling */
-    div[data-testid="stVerticalBlock"] > div {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        margin: 0.5rem 0;
-        transition: transform 0.2s ease;
-    }
-
-    div[data-testid="stVerticalBlock"] > div:hover {
-        transform: translateY(-2px);
-    }
-
     /* Input fields - Light theme */
     .stTextInput > div > div > input,
     .stNumberInput > div > div > input,
@@ -183,16 +117,7 @@ st.markdown(
         color: #1B5E20;
         border: 1px solid #4CAF50;
         border-radius: 8px;
-        padding: 0.5rem 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .stTextInput > div > div > input:focus,
-    .stNumberInput > div > div > input:focus,
-    .stDateInput > div > div > input:focus,
-    .stTextArea > div > div > textarea:focus {
-        border-color: #2E7D32;
-        box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+        padding: 0.5rem;
     }
 
     /* Select boxes - Light theme */
@@ -213,8 +138,6 @@ st.markdown(
         border-radius: 8px;
         font-weight: 600;
         transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
 
     div.stButton > button:hover {
@@ -226,29 +149,13 @@ st.markdown(
     /* Dark theme overrides */
     @media (prefers-color-scheme: dark) {
         [data-testid="stAppViewContainer"] {
-            background-color: #121212 !important;
-            background-image: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
-                             linear-gradient(225deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
-                             linear-gradient(45deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
-                             linear-gradient(315deg, rgba(76, 175, 80, 0.05) 25%, #121212 25%) !important;
-        }
-
-        button[data-testid="baseButton-header"] {
-            color: #FFFFFF !important;
+            background-color: #0A1929;
+            color: #FFFFFF;
         }
 
         [data-testid="stSidebar"] {
-            background-color: #1E1E1E !important;
-            background-image: linear-gradient(45deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
-                             linear-gradient(-45deg, rgba(76, 175, 80, 0.05) 25%, transparent 25%),
-                             linear-gradient(45deg, transparent 75%, rgba(76, 175, 80, 0.05) 75%),
-                             linear-gradient(-45deg, transparent 75%, rgba(76, 175, 80, 0.05) 75%) !important;
+            background-color: #132F4C;
             border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .main > div {
-            background: rgba(30, 30, 30, 0.9);
-            backdrop-filter: blur(10px);
         }
 
         h1, h2, h3, h4, h5, h6, .st-emotion-cache-10trblm {
@@ -259,63 +166,58 @@ st.markdown(
             color: #FFFFFF !important;
         }
 
-        div[data-testid="stVerticalBlock"] > div {
-            background: #1E1E1E;
-            border: 1px solid #333333;
-        }
-
         /* Input fields - Dark theme */
         .stTextInput > div > div > input,
         .stNumberInput > div > div > input,
         .stDateInput > div > div > input,
         .stTextArea > div > div > textarea {
-            background-color: #2D2D2D !important;
+            background-color: #1E293B !important;
             color: #FFFFFF !important;
-            border: 1px solid #404040 !important;
+            border: 1px solid #334155 !important;
         }
 
         /* Select boxes - Dark theme */
         .stSelectbox > div > div > div {
-            background-color: #2D2D2D !important;
+            background-color: #1E293B !important;
             color: #FFFFFF !important;
-            border: 1px solid #404040 !important;
+            border: 1px solid #334155 !important;
         }
 
         /* Tables - Dark theme */
         .stTable, .dataframe {
-            background-color: #1E1E1E !important;
+            background-color: #132F4C !important;
             color: #FFFFFF !important;
         }
 
         .stTable th, .dataframe th {
-            background-color: #2D2D2D !important;
+            background-color: #1E293B !important;
             color: #FFFFFF !important;
-            border-bottom: 1px solid #404040 !important;
+            border-bottom: 1px solid #334155 !important;
         }
 
         .stTable td, .dataframe td {
             color: #FFFFFF !important;
-            border-bottom: 1px solid #333333 !important;
+            border-bottom: 1px solid #1E293B !important;
         }
 
         /* Charts - Dark theme */
         [data-testid="stChart"] {
-            background-color: #1E1E1E !important;
-            border: 1px solid #333333 !important;
+            background-color: #132F4C !important;
+            border: 1px solid #1E293B !important;
         }
 
         /* Success messages - Dark theme */
         .stSuccess {
-            background-color: rgba(76, 175, 80, 0.2) !important;
+            background-color: rgba(16, 185, 129, 0.1) !important;
             color: #FFFFFF !important;
-            border: 1px solid #4CAF50 !important;
+            border: 1px solid #10B981 !important;
         }
 
         /* Error messages - Dark theme */
         .stError {
-            background-color: rgba(183, 28, 28, 0.2) !important;
-            color: #EF5350 !important;
-            border: 1px solid #EF5350 !important;
+            background-color: rgba(239, 68, 68, 0.1) !important;
+            color: #EF4444 !important;
+            border: 1px solid #EF4444 !important;
         }
 
         /* Metrics - Dark theme */
@@ -324,23 +226,34 @@ st.markdown(
         }
 
         [data-testid="stMetricDelta"] {
-            color: #4CAF50 !important;
+            color: #10B981 !important;
         }
 
         /* Code blocks - Dark theme */
         code {
-            background-color: #2D2D2D !important;
+            background-color: #1E293B !important;
             color: #FFFFFF !important;
-            border: 1px solid #404040 !important;
+            border: 1px solid #334155 !important;
         }
 
         /* Links - Dark theme */
         a {
-            color: #4CAF50 !important;
+            color: #38BDF8 !important;
         }
 
         a:hover {
-            color: #66BB6A !important;
+            color: #60A5FA !important;
+        }
+
+        /* Buttons - Dark theme */
+        div.stButton > button {
+            background-color: #2563EB !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        div.stButton > button:hover {
+            background-color: #3B82F6 !important;
         }
     }
     </style>
